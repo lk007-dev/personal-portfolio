@@ -21,6 +21,9 @@ const initialState: SkillsState = {
         { name: 'Tailwind CSS', category: 'Frontend', level: 90 },
         { name: 'Node.js', category: 'Backend', level: 70 },
         { name: 'Git', category: 'Tools', level: 85 },
+        { name: 'VS Code', category: 'Tools', level: 95 },
+        { name: 'Linux', category: 'Tools', level: 90 },
+        { name: 'Zed', category: 'Tools', level: 75 },
     ],
     filter: 'All',
 };

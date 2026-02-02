@@ -10,6 +10,7 @@ import { toggleTheme } from '../features/theme/themeSlice';
 const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '#about' },
+    { name: 'Experience', href: '#experience' },
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
     { name: 'Contact', href: '#contact' },
@@ -49,9 +50,14 @@ export default function Navbar() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
                     {/* Logo */}
-                    <Link href="/" className="flex-shrink-0">
-                        <span className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent cursor-pointer">
-                            Portfolio
+                    <Link href="/" className="flex-shrink-0 flex items-center gap-2">
+                        <div className="w-10 h-10 relative">
+                            {/* Using img tag directly for SVG or Next Image if configured. 
+                                 Since it's in public, /logo.svg works. */}
+                            <img src="/logo.svg" alt="Lalit Logo" className="w-full h-full object-contain" />
+                        </div>
+                        <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent cursor-pointer hidden sm:block">
+                            Lalit
                         </span>
                     </Link>
 

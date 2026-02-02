@@ -33,60 +33,28 @@ export default function ContactSection() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.2 }}
-                    className="glass p-8 md:p-12 rounded-2xl shadow-2xl border border-white/10"
+                    className="glass p-10 md:p-14 rounded-3xl shadow-2xl border border-white/10 text-center max-w-2xl mx-auto"
                 >
-                    <form className="space-y-6">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            {/* Name */}
-                            <div className="relative group">
-                                <FaUser className="absolute left-4 top-4 text-gray-500 group-focus-within:text-primary transition-colors" />
-                                <input
-                                    type="text"
-                                    placeholder="Your Name"
-                                    className="w-full bg-black/20 border border-white/10 rounded-xl px-12 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all"
-                                />
-                            </div>
+                    <div className="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-8 shadow-[0_0_30px_rgba(56,189,248,0.4)]">
+                        <FaEnvelope size={32} className="text-white" />
+                    </div>
 
-                            {/* Email */}
-                            <div className="relative group">
-                                <FaEnvelope className="absolute left-4 top-4 text-gray-500 group-focus-within:text-primary transition-colors" />
-                                <input
-                                    type="email"
-                                    placeholder="Your Email"
-                                    className="w-full bg-black/20 border border-white/10 rounded-xl px-12 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all"
-                                />
-                            </div>
-                        </div>
+                    <h3 className="text-2xl font-bold text-white mb-4">
+                        Send me an email
+                    </h3>
 
-                        {/* Subject/Phone (Optional mix) */}
-                        <div className="relative group">
-                            <FaPhone className="absolute left-4 top-4 text-gray-500 group-focus-within:text-primary transition-colors" />
-                            <input
-                                type="tel"
-                                placeholder="Phone Number (Optional)"
-                                className="w-full bg-black/20 border border-white/10 rounded-xl px-12 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all"
-                            />
-                        </div>
+                    <p className="text-gray-400 mb-10 text-lg leading-relaxed">
+                        I'm currently available for freelance work and open to new opportunities.
+                        If you have a question or just want to say hi, I'll try my best to get back to you!
+                    </p>
 
-                        {/* Message */}
-                        <div className="relative group">
-                            <FaCommentAlt className="absolute left-4 top-4 text-gray-500 group-focus-within:text-primary transition-colors" />
-                            <textarea
-                                rows={4}
-                                placeholder="Your Message..."
-                                className="w-full bg-black/20 border border-white/10 rounded-xl px-12 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all resize-none"
-                            ></textarea>
-                        </div>
-
-                        <motion.button
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                            type="submit"
-                            className="w-full bg-gradient-to-r from-primary to-secondary text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-shadow flex items-center justify-center gap-2 text-lg"
-                        >
-                            <FaPaperPlane /> Send Message
-                        </motion.button>
-                    </form>
+                    <a
+                        href="mailto:bijarnialalit07@gmail.com"
+                        className="inline-flex items-center gap-3 bg-white text-zinc-950 px-8 py-4 rounded-full font-bold text-lg hover:bg-primary hover:text-white transition-all hover:scale-105 shadow-xl"
+                    >
+                        <FaPaperPlane />
+                        bijarnialalit07@gmail.com
+                    </a>
                 </motion.div>
             </div>
         </section>

@@ -35,13 +35,13 @@ export default function AboutSection() {
                             When I&apos;m not coding, I&apos;m exploring new tech trends or optimizing my development workflow.
                         </p>
 
-                        <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="px-8 py-3 rounded-full bg-white text-slate-900 font-semibold hover:bg-gray-200 transition-colors flex items-center gap-2"
+                        <a
+                            href="/Lalit_Kumar_Resume.pdf"
+                            download="Lalit_Kumar_Resume.pdf"
+                            className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-white text-slate-900 font-semibold hover:bg-gray-200 transition-colors shadow-lg"
                         >
                             <FaDownload /> Download Resume
-                        </motion.button>
+                        </a>
                     </motion.div>
 
                     {/* Creative Visual - "Terminal" or Stats Card */}
