@@ -24,10 +24,10 @@ const initialState: ProjectsState = {
         },
         {
             id: '2',
-            title: 'Blonzy',
-            description: 'The best online laundry & dry cleaning service in Gurgaon. Features doorstep pickup, express wash, and premium garment care.',
+            title: 'Dayout Cab Service',
+            description: 'Premium cab service in Delhi NCR. Features reliable airport transfers, city tours, and comfortable outstation travel.',
             tags: ['Next.js', 'React', 'Service Worker'],
-            link: 'https://www.blonzydrycleaner.com/',
+            link: 'https://www.dayoutcabservice.com/',
         },
         {
             id: '3',
