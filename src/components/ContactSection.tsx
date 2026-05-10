@@ -50,7 +50,7 @@ export default function ContactSection() {
 
                     <a
                         href="mailto:bijarnialalit07@gmail.com"
-                        className="inline-flex items-center gap-3 bg-white text-zinc-950 px-8 py-4 rounded-full font-bold text-lg hover:bg-primary hover:text-white transition-all hover:scale-105 shadow-xl"
+                        className="inline-flex items-center gap-3 bg-white text-zinc-950 px-8 py-4 rounded-full font-bold text-sm lg:text-lg hover:bg-primary hover:text-white transition-all hover:scale-105 shadow-xl"
                     >
                         <FaPaperPlane />
                         bijarnialalit07@gmail.com

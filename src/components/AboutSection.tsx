@@ -4,14 +4,14 @@ import { motion } from 'framer-motion';
 import { FaDownload, FaCoffee, FaCode, FaRocket } from 'react-icons/fa';
 
 const stats = [
-    { label: 'Years Experience', value: '3+', icon: FaCode },
-    { label: 'Projects Completed', value: '15+', icon: FaRocket },
+    { label: 'Years Experience', value: '1.5+', icon: FaCode },
+    { label: 'Projects Completed', value: '5+', icon: FaRocket },
     { label: 'Coffee Consumed', value: '∞', icon: FaCoffee },
 ];
 
 export default function AboutSection() {
     return (
-        <section id="about" className="py-20 relative">
+        <section id="about" className="py-20 relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     {/* Text Content */}

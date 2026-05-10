@@ -48,6 +48,7 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
   /* Account for fixed navbar (4rem aka h-16) + breathing room */
+  overflow-x: hidden;
 }
 
 body {

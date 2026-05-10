@@ -23,27 +23,7 @@ export default function Navbar() {
 
     const toggleMenu = () => setIsOpen(!isOpen);
 
-    // Animation variants
-    const menuVariants = {
-        closed: {
-            opacity: 0,
-            y: '-100%', // Slide up
-            transition: {
-                type: 'spring',
-                stiffness: 300,
-                damping: 30,
-            },
-        },
-        open: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                type: 'spring',
-                stiffness: 300,
-                damping: 30,
-            },
-        },
-    } as const;
+    // Mobile menu uses pure CSS transitions for maximum performance on all devices
 
     return (
         <nav className="fixed w-full z-50 top-0 start-0 glass border-b border-white/10">
@@ -111,67 +91,46 @@ export default function Navbar() {
                 </div>
             </div>
 
-            {/* Mobile Menu Overlay */}
-            <AnimatePresence>
-                {isOpen && (
-                    <motion.div
-                        className="md:hidden fixed inset-0 z-40 bg-zinc-950/95 backdrop-blur-xl flex items-center justify-center"
-                        initial="closed"
-                        animate="open"
-                        exit="closed"
-                        variants={menuVariants}
+            {/* Mobile Menu Overlay - Pure CSS for maximum performance */}
+            <div
+                className={`md:hidden fixed inset-0 z-40 bg-zinc-950 flex items-center justify-center transition-transform duration-300 ease-out will-change-transform ${
+                    isOpen ? 'translate-x-0' : 'translate-x-full'
+                }`}
+            >
+                {/* Close Button Layout for Mobile */}
+                <div className="absolute top-5 right-5 z-50">
+                    <button
+                        onClick={() => setIsOpen(false)}
+                        className="p-2 text-gray-400 hover:text-white transition-colors"
                     >
-                        {/* Close Button Layout for Mobile */}
-                        <div className="absolute top-5 right-5 z-50">
-                            <button
+                        <FaTimes size={32} />
+                    </button>
+                </div>
+
+                <div className="relative z-10 flex flex-col items-center gap-8">
+                    {navLinks.map((link) => (
+                        <div key={link.name}>
+                            <Link
+                                href={link.href}
                                 onClick={() => setIsOpen(false)}
-                                className="p-2 text-gray-400 hover:text-white transition-colors"
+                                className="text-2xl font-bold text-gray-300 hover:text-white hover:scale-110 transition-transform block p-2"
                             >
-                                <FaTimes size={32} />
-                            </button>
+                                {link.name}
+                            </Link>
                         </div>
+                    ))}
 
-                        {/* Background decoration */}
-                        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-[80px]" />
-                        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-secondary/10 rounded-full blur-[80px]" />
-
-                        <div className="relative z-10 flex flex-col items-center gap-8">
-                            {navLinks.map((link, i) => (
-                                <motion.div
-                                    key={link.name}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: 10 }}
-                                    transition={{ delay: 0.1 * i }}
-                                >
-                                    <Link
-                                        href={link.href}
-                                        onClick={() => setIsOpen(false)}
-                                        className="text-2xl font-bold text-gray-300 hover:text-white hover:scale-110 transition-transform block p-2"
-                                    >
-                                        {link.name}
-                                    </Link>
-                                </motion.div>
-                            ))}
-
-                            {/* Mobile Socials */}
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ delay: 0.5 }}
-                                className="flex gap-8 mt-8"
-                            >
-                                <a href="https://github.com/lk007-dev/" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                                    <FaGithub size={32} />
-                                </a>
-                                <a href="https://www.linkedin.com/in/lalit-bijarnia" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                                    <FaLinkedin size={32} />
-                                </a>
-                            </motion.div>
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                    {/* Mobile Socials */}
+                    <div className="flex gap-8 mt-8">
+                        <a href="https://github.com/lk007-dev/" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                            <FaGithub size={32} />
+                        </a>
+                        <a href="https://www.linkedin.com/in/lalit-bijarnia" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                            <FaLinkedin size={32} />
+                        </a>
+                    </div>
+                </div>
+            </div>
         </nav>
     );
 }

@@ -11,7 +11,8 @@ import FloatingEmail from '../components/FloatingEmail';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-transparent relative z-0">
+    <>
+      <main className="min-h-screen bg-transparent relative z-0">
       <Hero />
       <AboutSection />
       <ExperienceSection />
@@ -19,7 +20,8 @@ export default function Home() {
       <ProjectsSection />
       <ContactSection />
       <Footer />
+      </main>
       <FloatingEmail />
-    </main>
+    </>
   );
 }
