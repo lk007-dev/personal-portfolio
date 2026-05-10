@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lalit Kumar - Resume</title>
+    <style>
+        /* ATS-friendly, clean, minimalist styling with a touch of elegance */
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            color: #111;
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 30px 40px;
+            background: #fff;
+        }
+
+        /* Print optimization to ensure single page */
+        @media print {
+            @page {
+                margin: 0.5cm;
+            }
+
+            body {
+                padding: 0;
+                margin: 0;
+                max-width: 100%;
+            }
+
+            .no-print {
+                display: none;
+            }
+
+            a {
+                text-decoration: none !important;
+                color: #000 !important;
+            }
+        }
+
+        /* Header / Contact Info */
+        header {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin: 0 0 4px 0;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #000;
+        }
+
+        .contact-info {
+            font-size: 13px;
+            color: #333;
+        }
+
+        .contact-info a {
+            color: #000;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Section Headings */
+        h2 {
+            font-size: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #000;
+            border-bottom: 1px solid #000;
+            padding-bottom: 2px;
+            margin-top: 16px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        /* Content Text */
+        p {
+            font-size: 13px;
+            margin: 0 0 10px 0;
+            text-align: justify;
+        }
+
+        /* Skills Lists */
+        .skills-list {
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .skills-list p {
+            margin: 0 0 4px 0;
+        }
+
+        .skills-list strong {
+            font-weight: 600;
+            display: inline-block;
+            min-width: 170px;
+        }
+
+        /* Experience and Project Items */
+        .item {
+            margin-bottom: 12px;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 2px;
+        }
+
+        .item-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #000;
+        }
+
+        .item-subtitle {
+            font-size: 13px;
+            font-weight: 600;
+            font-style: italic;
+            color: #222;
+            margin-bottom: 2px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .item-meta {
+            font-size: 13px;
+            font-style: italic;
+            color: #333;
+        }
+
+        ul {
+            margin: 4px 0 8px 0;
+            padding-left: 20px;
+        }
+
+        li {
+            font-size: 13px;
+            margin-bottom: 3px;
+        }
+
+        /* Print Button */
+        .header-buttons {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: #2563eb;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 13px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="no-print header-buttons">
+        <button class="btn" onclick="window.print()">Print to PDF</button>
+        <p style="margin-top: 8px; font-size: 12px; color: #555;">
+            <strong>Tip:</strong> Ensure your browser's "Headers and footers" setting is turned off when printing!
+        </p>
+    </div>
+
+    <!-- Resume Body -->
+    <div spellcheck="false" style="outline: none;">
+
+        <header>
+            <h1>Lalit Kumar</h1>
+            <div class="contact-info">
+                Gurugram, India | +91 6280519352 |
+                <a href="mailto:bijarnialalit07@gmail.com" target="_blank">bijarnialalit07@gmail.com</a> |
+                <a href="https://www.linkedin.com/in/lalit-bijarnia" target="_blank">linkedin.com/in/lalit-bijarnia</a>
+                |
+                <a href="https://github.com/lk007-dev/" target="_blank">github.com/lk007-dev</a>
+            </div>
+        </header>
+
+        <h2>Professional Summary</h2>
+        <p>
+            Results-driven Frontend Developer with 1.5+ years of experience specializing in the React and Next.js
+            ecosystems. Proven track record of architecting scalable, high-performance web applications using modern
+            technologies like Redux Toolkit and Tailwind CSS. Adept at bridging design and engineering to deliver
+            exceptional user experiences.
+        </p>
+
+        <h2>Technical Skills</h2>
+        <div class="skills-list">
+            <p><strong>Languages:</strong> TypeScript, JavaScript (ES6+), HTML5, CSS3</p>
+            <p><strong>Frameworks & Libraries:</strong> React.js, Next.js, Redux Toolkit, Tailwind CSS, Framer Motion
+            </p>
+            <p><strong>Tools & Platforms:</strong> Git, GitHub, VS Code, Linux, Vercel, RESTful APIs</p>
+        </div>
+
+        <h2>Professional Experience & Key Projects</h2>
+
+        <div class="item">
+            <div class="item-header">
+                <span class="item-title">Software Developer</span>
+                <span class="item-meta">September 2024 - Present</span>
+            </div>
+            <div class="item-subtitle">
+                <span>Coneon <span style="font-weight: normal; font-size: 12.5px;">(<a href="https://www.coneon.in/"
+                            target="_blank">www.coneon.in</a>)</span></span>
+                <span style="font-weight: normal;">Gurugram, India</span>
+            </div>
+            <ul>
+                <li>Spearheaded the frontend architecture for core product features using React and Vite, significantly
+                    improving application performance.</li>
+                <li>Collaborated closely with design and backend teams to implement robust, responsive UI components
+                    using Tailwind CSS.</li>
+            </ul>
+        </div>
+
+        <div class="item">
+            <div class="item-header">
+                <span class="item-title">Software Developer Intern</span>
+                <span class="item-meta">January 2024 - June 2024</span>
+            </div>
+            <div class="item-subtitle">
+                <span>DRDO (Defense Research and Development Organization)</span>
+                <span style="font-weight: normal;">Gurugram, India</span>
+            </div>
+            <ul>
+                <li>Developed secure software solutions for mission-critical defense applications over a rigorous
+                    6-month internship.</li>
+                <li>Participated in agile sprints, contributing clean, well-documented code for scalable system design
+                    and data validation.</li>
+            </ul>
+        </div>
+
+        <div class="item">
+            <div class="item-header">
+                <span class="item-title">Other Projects</span>
+            </div>
+            <div class="item-header">
+                <span class="item-title">Dayout Cab Service <span style="font-weight: normal; font-size: 12.5px;">(<a
+                            href="https://www.dayoutcabservice.com/"
+                            target="_blank">dayoutcabservice.com</a>)</span></span>
+                <span class="item-meta">Next.js, React</span>
+            </div>
+            <div class="item-subtitle">
+                <span style="font-weight: normal;">Project</span>
+                <span style="font-weight: normal;">Gurugram, India</span>
+            </div>
+            <ul>
+                <li>Engineered an SEO-optimized cab booking platform leveraging Next.js SSR, drastically improving
+                    organic search visibility.</li>
+                <li>Implemented Service Workers for robust caching and offline fallback capabilities, ensuring seamless
+                    mobile experiences.</li>
+            </ul>
+        </div>
+
+        <div class="item">
+            <div class="item-header">
+                <span class="item-title">DoerDevs <span style="font-weight: normal; font-size: 12.5px;">(<a
+                            href="https://doerdevs.com/" target="_blank">doerdevs.com</a>)</span></span>
+                <span class="item-meta">React, Node.js, Redux</span>
+            </div>
+            <div class="item-subtitle">
+                <span style="font-weight: normal;">Project</span>
+                <span style="font-weight: normal;">Gurugram, India</span>
+            </div>
+            <ul>
+                <li>Built a comprehensive B2B platform connecting businesses with on-demand software development experts
+                    to elevate project outcomes.</li>
+                <li>Managed complex application state and user sessions seamlessly using Redux Toolkit to handle high
+                    volumes of dynamic data.</li>
+            </ul>
+        </div>
+
+        <h2>Education</h2>
+
+        <div class="item">
+            <div class="item-header">
+                <span class="item-title">Bachelor of Engineering, Computer Science</span>
+                <span class="item-meta">2020 - 2024</span>
+            </div>
+            <div class="item-subtitle">
+                <span style="font-weight: normal;">Graduation</span>
+                <span style="font-weight: normal;">Chandigarh, India</span>
+            </div>
+            <ul>
+                <li>Graduated with a 7.26 CGPA.</li>
+            </ul>
+        </div>
+
+        <div class="item">
+            <div class="item-header">
+                <span class="item-title">Senior Secondary (12th)</span>
+                <span class="item-meta">2020</span>
+            </div>
+            <div class="item-subtitle">
+                <span style="font-weight: normal;">Schooling</span>
+                <span style="font-weight: normal;">Chandigarh, India</span>
+            </div>
+            <ul>
+                <li>Achieved 78.6% in 12th grade board examinations.</li>
+            </ul>
+        </div>
+
+        <div class="item">
+            <div class="item-header">
+                <span class="item-title">Matriculation (10th)</span>
+                <span class="item-meta">2018</span>
+            </div>
+            <div class="item-subtitle">
+                <span style="font-weight: normal;">Schooling</span>
+                <span style="font-weight: normal;">Chandigarh, India</span>
+            </div>
+            <ul>
+                <li>Achieved 9.6 CGPA in 10th grade board examinations.</li>
+            </ul>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
