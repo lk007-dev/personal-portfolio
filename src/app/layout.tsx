@@ -15,8 +15,17 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Portfolio | Frontend Developer',
-  description: 'Premium Portfolio showcasing React and Redux expertise',
+  title: 'Lalit Kumar | Front-End Developer',
+  description: 'Premium Portfolio showcasing React, Next.js, and Redux expertise.',
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/icon.png', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-icon.png' },
+    ],
+  },
 };
 
 export default function RootLayout({
