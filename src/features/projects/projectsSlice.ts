@@ -32,8 +32,8 @@ const initialState: ProjectsState = {
         {
             id: '3',
             title: 'DoerDevs',
-            description: 'Platform connecting businesses with on-demand software development experts. Elevating projects with top industry talent.',
-            tags: ['React', 'Node.js', 'Redux'],
+            description: 'A sleek, no-login B2B platform connecting businesses with software experts, powered by Firebase for secure query and lead management.',
+            tags: ['React', 'Firebase', 'Redux'],
             link: 'https://doerdevs.com/',
         },
     ],
