@@ -1,221 +1,257 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lalit Kumar - Resume</title>
-    <style>
-        /* Classic Ivy League Resume Styling */
-        body {
-            font-family: "Times New Roman", Times, serif;
-            font-size: 10.5pt;
-            line-height: 1.15;
-            color: #000;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 30px;
-            background: #fff;
-        }
-
-        /* Print optimization to ensure single page perfectly */
-        @media print {
-            @page {
-                margin: 0.4in;
-            }
-
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Lalit Kumar - Resume</title>
+        <style>
+            /* Classic Ivy League Resume Styling */
             body {
-                padding: 0;
-                margin: 0;
-                max-width: 100%;
+                font-family: "Times New Roman", Times, serif;
+                font-size: 10.5pt;
+                line-height: 1.15;
+                color: #000;
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 30px;
+                background: #fff;
             }
 
-            .no-print {
-                display: none;
+            /* Print optimization to ensure single page perfectly */
+            @media print {
+                @page {
+                    margin: 0.4in;
+                }
+
+                body {
+                    padding: 0;
+                    margin: 0;
+                    max-width: 100%;
+                }
+
+                .no-print {
+                    display: none;
+                }
+
+                a {
+                    text-decoration: none !important;
+                    color: #000 !important;
+                }
             }
 
-            a {
-                text-decoration: none !important;
-                color: #000 !important;
+            /* Header / Contact Info */
+            header {
+                text-align: center;
+                margin-bottom: 12pt;
             }
-        }
 
-        /* Header / Contact Info */
-        header {
-            text-align: center;
-            margin-bottom: 12pt;
-        }
+            h1 {
+                font-size: 16pt;
+                margin: 0 0 2pt 0;
+                font-weight: normal;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                color: #000;
+            }
 
-        h1 {
-            font-size: 16pt;
-            margin: 0 0 2pt 0;
-            font-weight: normal;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #000;
-        }
+            .contact-info {
+                font-size: 10pt;
+                color: #000;
+            }
 
-        .contact-info {
-            font-size: 10pt;
-            color: #000;
-        }
+            .contact-info a {
+                color: #000;
+                text-decoration: none;
+            }
 
-        .contact-info a {
-            color: #000;
-            text-decoration: none;
-        }
+            .contact-info a:hover {
+                text-decoration: underline;
+            }
 
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
+            /* Section Headings */
+            h2 {
+                font-size: 11pt;
+                font-weight: bold;
+                text-transform: uppercase;
+                color: #000;
+                border-bottom: 1px solid #000;
+                padding-bottom: 2px;
+                margin-top: 8pt;
+                margin-bottom: 3pt;
+            }
 
-        /* Section Headings */
-        h2 {
-            font-size: 11pt;
-            font-weight: bold;
-            text-transform: uppercase;
-            color: #000;
-            border-bottom: 1px solid #000;
-            padding-bottom: 2px;
-            margin-top: 8pt;
-            margin-bottom: 3pt;
-        }
+            /* Experience and Project Items */
+            .entry {
+                margin-bottom: 4pt;
+            }
 
-        /* Experience and Project Items */
-        .entry {
-            margin-bottom: 4pt;
-        }
+            .entry-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+            }
 
-        .entry-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-        }
+            .entry-title {
+                font-weight: bold;
+            }
 
-        .entry-title {
-            font-weight: bold;
-        }
+            .entry-location {
+                font-weight: normal;
+            }
 
-        .entry-location {
-            font-weight: normal;
-        }
+            .entry-subtitle {
+                font-style: italic;
+            }
 
-        .entry-subtitle {
-            font-style: italic;
-        }
+            .entry-date {
+                font-style: italic;
+            }
 
-        .entry-date {
-            font-style: italic;
-        }
+            /* Lists */
+            ul {
+                margin: 2pt 0 0 0;
+                padding-left: 20pt;
+            }
 
-        /* Lists */
-        ul {
-            margin: 2pt 0 0 0;
-            padding-left: 20pt;
-        }
+            li {
+                margin-bottom: 2pt;
+                text-align: justify;
+            }
 
-        li {
-            margin-bottom: 2pt;
-            text-align: justify;
-        }
+            /* Skills Lists */
+            .skills-list {
+                margin-top: 4pt;
+            }
 
-        /* Skills Lists */
-        .skills-list {
-            margin-top: 4pt;
-        }
+            .skills-list p {
+                margin: 0 0 4pt 0;
+            }
 
-        .skills-list p {
-            margin: 0 0 4pt 0;
-        }
+            .skills-list strong {
+                font-weight: bold;
+            }
 
-        .skills-list strong {
-            font-weight: bold;
-        }
+            /* Print Button */
+            .header-buttons {
+                text-align: center;
+                margin-bottom: 20px;
+                font-family: Arial, sans-serif;
+            }
 
-        /* Print Button */
-        .header-buttons {
-            text-align: center;
-            margin-bottom: 20px;
-            font-family: Arial, sans-serif;
-        }
+            .btn {
+                background: #2563eb;
+                color: white;
+                padding: 8px 16px;
+                text-decoration: none;
+                border-radius: 4px;
+                font-size: 13px;
+                border: none;
+                cursor: pointer;
+            }
 
-        .btn {
-            background: #2563eb;
-            color: white;
-            padding: 8px 16px;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 13px;
-            border: none;
-            cursor: pointer;
-        }
+            .btn:hover {
+                background: #1d4ed8;
+            }
+        </style>
+    </head>
 
-        .btn:hover {
-            background: #1d4ed8;
-        }
-    </style>
-</head>
-
-<body>
-
-    <div class="no-print header-buttons">
-        <button class="btn" onclick="window.print()">Print to PDF</button>
-        <p style="margin-top: 8px; font-size: 12px; color: #555;">
-            <strong>Tip:</strong> Ensure your browser's "Headers and footers" setting is turned off when printing.
-        </p>
-    </div>
-
-    <!-- Resume Body -->
-    <div spellcheck="false" style="outline: none;">
-
-        <header>
-            <h1><b>Lalit Kumar</b></h1>
-            <div class="contact-info">
-                Gurugram, India | +91 6280519352 |
-                <a href="mailto:bijarnialalit07@gmail.com" target="_blank">bijarnialalit07@gmail.com</a> |
-                <a href="https://personal-portfolio-henna-five-43.vercel.app/"
-                    target="_blank">personal-portfolio-website</a> |
-                <a href="https://www.linkedin.com/in/lalit-bijarnia" target="_blank">linkedin.com/in/lalit-bijarnia</a>
-                |
-                <a href="https://github.com/lk007-dev/" target="_blank">github.com/lk007-dev</a>
-            </div>
-        </header>
-
-        <h2>Professional Summary</h2>
-        <p style="text-align: justify; margin: 0 0 6pt 0;">
-            Results-driven Front-End Developer with 1.5+ years of experience constructing scalable web applications.
-            Proven track record of independently building platforms that support 500+ active concurrent users and
-            accelerating feature delivery cycles by 30%. Highly proficient in React, Next.js, and Redux Toolkit, with a
-            demonstrated ability to enhance core web vitals and reduce initial load times by up to 40% across
-            high-traffic enterprise applications.
-        </p>
-
-        <h2>Professional Experience</h2>
-        <div class="entry">
-            <div class="entry-row">
-                <span class="entry-title">Coneon (<a href="https://www.coneon.in/"
-                        target="_blank">www.coneon.in</a>)</span>
-                <span class="entry-location">Gurugram, India</span>
-            </div>
-            <div class="entry-row">
-                <span class="entry-subtitle">Software Developer</span>
-                <span class="entry-date">September 2024 &ndash; Present</span>
-            </div>
-            <ul>
-                <li>Independently architected and established the complete front-end infrastructure using React and
-                    Vite, resulting in a 40% reduction in initial load times.</li>
-                <li>Collaborated with UI/UX and backend teams to build 50+ reusable, responsive UI components using
-                    Tailwind CSS, accelerating feature delivery by 30%.</li>
-                <li>Implemented robust state management using Redux Toolkit and authored custom React hooks to
-                    streamline cross-component data flow and eliminate redundant re-renders.</li>
-                <li>Utilized AI-assisted development tools (ChatGPT, Gemini) to optimize coding workflows, reducing
-                    debugging time and increasing overall development velocity.</li>
-                <li>Developed and optimized RESTful API integrations with efficient data caching strategies, reducing
-                    redundant network requests by 35% and improving overall responsiveness.</li>
-            </ul>
+    <body>
+        <div class="no-print header-buttons">
+            <button class="btn" onclick="window.print()">Print to PDF</button>
+            <p style="margin-top: 8px; font-size: 12px; color: #555">
+                <strong>Tip:</strong> Ensure your browser's "Headers and
+                footers" setting is turned off when printing.
+            </p>
         </div>
 
-        <div class="entry">
+        <!-- Resume Body -->
+        <div spellcheck="false" style="outline: none">
+            <header>
+                <h1><b>Lalit Kumar</b></h1>
+                <div class="contact-info">
+                    Gurugram, India | +91 6280519352 |
+                    <a href="mailto:bijarnialalit07@gmail.com" target="_blank"
+                        >bijarnialalit07@gmail.com</a
+                    >
+                    |
+                    <a href="https://www.iamlalit.in/" target="_blank"
+                        >iamlalit.in</a
+                    >
+                    |
+                    <a
+                        href="https://www.linkedin.com/in/lalit-bijarnia"
+                        target="_blank"
+                        >linkedin.com/in/lalit-bijarnia</a
+                    >
+                    |
+                    <a href="https://github.com/lk007-dev/" target="_blank"
+                        >github.com/lk007-dev</a
+                    >
+                </div>
+            </header>
+
+            <h2>Professional Summary</h2>
+            <p style="text-align: justify; margin: 0 0 6pt 0">
+                Results-driven Front-End Developer with 1.5+ years of experience
+                constructing scalable web applications. Proven track record of
+                independently building platforms that support 500+ active
+                concurrent users and accelerating feature delivery cycles by
+                30%. Highly proficient in React, Next.js, and Redux Toolkit,
+                with a demonstrated ability to enhance core web vitals and
+                reduce initial load times by up to 40% across high-traffic
+                enterprise applications.
+            </p>
+
+            <h2>Professional Experience</h2>
+            <div class="entry">
+                <div class="entry-row">
+                    <span class="entry-title"
+                        >Coneon (<a
+                            href="https://www.coneon.in/"
+                            target="_blank"
+                            >www.coneon.in</a
+                        >)</span
+                    >
+                    <span class="entry-location">Gurugram, India</span>
+                </div>
+                <div class="entry-row">
+                    <span class="entry-subtitle">Software Developer</span>
+                    <span class="entry-date"
+                        >September 2024 &ndash; Present</span
+                    >
+                </div>
+                <ul>
+                    <li>
+                        Independently architected and established the complete
+                        front-end infrastructure using React and Vite, resulting
+                        in a 40% reduction in initial load times.
+                    </li>
+                    <li>
+                        Collaborated with UI/UX and backend teams to build 50+
+                        reusable, responsive UI components using Tailwind CSS,
+                        accelerating feature delivery by 30%.
+                    </li>
+                    <li>
+                        Implemented robust state management using Redux Toolkit
+                        and authored custom React hooks to streamline
+                        cross-component data flow and eliminate redundant
+                        re-renders.
+                    </li>
+                    <li>
+                        Utilized AI-assisted development tools (ChatGPT, Gemini)
+                        to optimize coding workflows, reducing debugging time
+                        and increasing overall development velocity.
+                    </li>
+                    <li>
+                        Developed and optimized RESTful API integrations with
+                        efficient data caching strategies, reducing redundant
+                        network requests by 35% and improving overall
+                        responsiveness.
+                    </li>
+                </ul>
+            </div>
+
+            <!--<div class="entry">
             <div class="entry-row">
                 <span class="entry-title">Freelance Developer</span>
                 <span class="entry-location">Gurugram, India</span>
@@ -228,73 +264,118 @@
                 <li>Delivering custom, pixel-perfect web solutions and dynamic e-commerce web applications using Next.js, React, and Tailwind CSS.</li>
                 <li>Architecting reliable client state models with Redux Toolkit and optimizing build packages to maximize Lighthouse SEO and loading metrics.</li>
             </ul>
-        </div>
+        </div>-->
 
-        <div class="entry">
-            <div class="entry-row">
-                <span class="entry-title">Defense Research and Development Organization (DRDO)</span>
-                <span class="entry-location">Gurugram, India</span>
+            <div class="entry">
+                <div class="entry-row">
+                    <span class="entry-title"
+                        >Defense Research and Development Organization
+                        (DRDO)</span
+                    >
+                    <span class="entry-location">Gurugram, India</span>
+                </div>
+                <div class="entry-row">
+                    <span class="entry-subtitle"
+                        >Software Developer Intern</span
+                    >
+                    <span class="entry-date"
+                        >January 2024 &ndash; June 2024</span
+                    >
+                </div>
+                <ul>
+                    <li>
+                        Programmed highly secure software modules for
+                        mission-critical defense applications, successfully
+                        completing 100% of assigned objectives during a rigorous
+                        6-month internship.
+                    </li>
+                    <li>
+                        Contributed clean, well-documented code for scalable
+                        system architecture across 12+ agile sprints, enhancing
+                        data validation efficiency by 25%.
+                    </li>
+                </ul>
             </div>
-            <div class="entry-row">
-                <span class="entry-subtitle">Software Developer Intern</span>
-                <span class="entry-date">January 2024 &ndash; June 2024</span>
-            </div>
-            <ul>
-                <li>Programmed highly secure software modules for mission-critical defense applications, successfully
-                    completing 100% of assigned objectives during a rigorous 6-month internship.</li>
-                <li>Contributed clean, well-documented code for scalable system architecture across 12+ agile sprints,
-                    enhancing data validation efficiency by 25%.</li>
-            </ul>
-        </div>
 
-        <h2>Education</h2>
-        <div class="entry">
-            <div class="entry-row">
-                <span class="entry-title">Bachelor of Engineering in Computer Science</span>
-                <span class="entry-location">Chandigarh, India</span>
+            <h2>Education</h2>
+            <div class="entry">
+                <div class="entry-row">
+                    <span class="entry-title"
+                        >Bachelor of Engineering in Computer Science</span
+                    >
+                    <span class="entry-location">Chandigarh, India</span>
+                </div>
+                <div class="entry-row">
+                    <span class="entry-subtitle"
+                        >Cumulative Grade Point Average (CGPA): 7.26</span
+                    >
+                    <span class="entry-date">2020 &ndash; 2024</span>
+                </div>
             </div>
-            <div class="entry-row">
-                <span class="entry-subtitle">Cumulative Grade Point Average (CGPA): 7.26</span>
-                <span class="entry-date">2020 &ndash; 2024</span>
-            </div>
-        </div>
 
-        <h2>Projects</h2>
-        <div class="entry">
-            <div class="entry-row">
-                <span class="entry-title">The Luxem Hotel (<a href="https://www.theluxemhotel.com"
-                        target="_blank">theluxemhotel.com</a>)</span>
-                <span class="entry-location">Gurugram, India</span>
+            <h2>Projects</h2>
+            <div class="entry">
+                <div class="entry-row">
+                    <span class="entry-title"
+                        >The Luxem Hotel (<a
+                            href="https://www.theluxemhotel.com"
+                            target="_blank"
+                            >theluxemhotel.com</a
+                        >)</span
+                    >
+                    <span class="entry-location">Gurugram, India</span>
+                </div>
+                <div class="entry-row">
+                    <span class="entry-subtitle"
+                        >Next.js, React, Redux Toolkit, Tailwind CSS</span
+                    >
+                    <span class="entry-date">Project</span>
+                </div>
+                <ul>
+                    <li>
+                        Architected a premium, dynamic boutique hotel booking
+                        platform featuring a date-based reservation workflow,
+                        room selector, and high-fidelity transitions.
+                    </li>
+                    <li>
+                        Leveraged Redux Toolkit for unified client state
+                        management, ensuring smooth navigation, optimized image
+                        delivery, and interactive UX.
+                    </li>
+                </ul>
             </div>
-            <div class="entry-row">
-                <span class="entry-subtitle">Next.js, React, Redux Toolkit, Tailwind CSS</span>
-                <span class="entry-date">Project</span>
-            </div>
-            <ul>
-                <li>Architected a premium, dynamic boutique hotel booking platform featuring a date-based reservation workflow, room selector, and high-fidelity transitions.</li>
-                <li>Leveraged Redux Toolkit for unified client state management, ensuring smooth navigation, optimized image delivery, and interactive UX.</li>
-            </ul>
-        </div>
 
-        <div class="entry">
-            <div class="entry-row">
-                <span class="entry-title">Dayout Cab Service (<a href="https://www.dayoutcabservice.com/"
-                        target="_blank">dayoutcabservice.com</a>)</span>
-                <span class="entry-location">Gurugram, India</span>
+            <div class="entry">
+                <div class="entry-row">
+                    <span class="entry-title"
+                        >Dayout Cab Service (<a
+                            href="https://www.dayoutcabservice.com/"
+                            target="_blank"
+                            >dayoutcabservice.com</a
+                        >)</span
+                    >
+                    <span class="entry-location">Gurugram, India</span>
+                </div>
+                <div class="entry-row">
+                    <span class="entry-subtitle">Next.js, React</span>
+                    <span class="entry-date">Project</span>
+                </div>
+                <ul>
+                    <li>
+                        Architected a premium, highly responsive user interface
+                        using Next.js and Tailwind CSS, streamlining the booking
+                        flow to significantly enhance mobile user engagement.
+                    </li>
+                    <li>
+                        Integrated dynamic components and fluid UI animations
+                        with Framer Motion, elevating the brand's digital
+                        presence and creating a modern, interactive web
+                        experience.
+                    </li>
+                </ul>
             </div>
-            <div class="entry-row">
-                <span class="entry-subtitle">Next.js, React</span>
-                <span class="entry-date">Project</span>
-            </div>
-            <ul>
-                <li>Architected a premium, highly responsive user interface using Next.js and Tailwind CSS, streamlining
-                    the booking flow to significantly enhance mobile user engagement.</li>
-                <li>Integrated dynamic components and fluid UI animations with Framer Motion, elevating the brand's
-                    digital presence and creating a modern, interactive web experience.</li>
-            </ul>
-        </div>
 
-        <!-- <div class="entry">
+            <!-- <div class="entry">
             <div class="entry-row">
                 <span class="entry-title">DoerDevs (<a href="https://doerdevs.com/"
                         target="_blank">doerdevs.com</a>)</span>
@@ -312,17 +393,21 @@
             </ul>
         </div> -->
 
-        <h2>Technical Skills</h2>
-        <div class="skills-list">
-            <p><strong>Languages:</strong> TypeScript, JavaScript (ES6+), HTML5, CSS3</p>
-            <p><strong>Frameworks & Libraries:</strong> React.js, Next.js, Redux Toolkit, Tailwind CSS, Framer Motion
-            </p>
-            <p><strong>Tools & Platforms:</strong> Git, GitHub, VS Code, Linux, Vercel, RESTful APIs, ChatGPT, Gemini
-            </p>
+            <h2>Technical Skills</h2>
+            <div class="skills-list">
+                <p>
+                    <strong>Languages:</strong> TypeScript, JavaScript (ES6+),
+                    HTML5, CSS3
+                </p>
+                <p>
+                    <strong>Frameworks & Libraries:</strong> React.js, Next.js,
+                    Redux Toolkit, Tailwind CSS, Framer Motion
+                </p>
+                <p>
+                    <strong>Tools & Platforms:</strong> Git, GitHub, VS Code,
+                    Linux, Vercel, RESTful APIs, ChatGPT, Gemini
+                </p>
+            </div>
         </div>
-
-    </div>
-
-</body>
-
+    </body>
 </html>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAppSelector } from '../lib/hooks';
 import { selectAllProjects } from '../features/projects/projectsSlice';
@@ -11,7 +11,7 @@ const themes = [
         bgGradient: 'from-cyan-500/10 via-blue-500/5 to-transparent',
         textColor: 'text-cyan-400',
         borderColor: 'border-cyan-500/30',
-        glowColor: 'rgba(6, 182, 212, 0.25)',
+        glowColor: 'rgba(6, 182, 212, 0.2)',
         accentBg: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
         glowText: 'shadow-[0_0_15px_rgba(6,182,212,0.4)]',
         colorHex: '#06b6d4'
@@ -20,7 +20,7 @@ const themes = [
         bgGradient: 'from-amber-500/10 via-orange-500/5 to-transparent',
         textColor: 'text-amber-400',
         borderColor: 'border-amber-500/30',
-        glowColor: 'rgba(245, 158, 11, 0.25)',
+        glowColor: 'rgba(245, 158, 11, 0.2)',
         accentBg: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
         glowText: 'shadow-[0_0_15px_rgba(245,158,11,0.4)]',
         colorHex: '#f59e0b'
@@ -29,7 +29,7 @@ const themes = [
         bgGradient: 'from-indigo-500/10 via-purple-500/5 to-transparent',
         textColor: 'text-indigo-400',
         borderColor: 'border-indigo-500/30',
-        glowColor: 'rgba(99, 102, 241, 0.25)',
+        glowColor: 'rgba(99, 102, 241, 0.2)',
         accentBg: 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20',
         glowText: 'shadow-[0_0_15px_rgba(99,102,241,0.4)]',
         colorHex: '#6366f1'
@@ -38,7 +38,7 @@ const themes = [
         bgGradient: 'from-pink-500/10 via-rose-500/5 to-transparent',
         textColor: 'text-pink-400',
         borderColor: 'border-pink-500/30',
-        glowColor: 'rgba(236, 72, 153, 0.25)',
+        glowColor: 'rgba(236, 72, 153, 0.2)',
         accentBg: 'bg-pink-500/10 text-pink-400 border-pink-500/20',
         glowText: 'shadow-[0_0_15px_rgba(236,72,153,0.4)]',
         colorHex: '#ec4899'
@@ -49,6 +49,66 @@ export default function ProjectsSection() {
     const projects = useAppSelector(selectAllProjects);
     const [activeIndex, setActiveIndex] = useState<number>(0);
     const [hoveredImageIndex, setHoveredImageIndex] = useState<number | null>(null);
+
+    // Refs for mobile scroll intersection observer tracking
+    const panelRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+    // Mouse coordinates state for spotlight cursor tracking glow on desktop
+    const [mousePositions, setMousePositions] = useState<{ [key: string]: { x: number; y: number } }>({});
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, projectId: string) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        setMousePositions(prev => ({
+            ...prev,
+            [projectId]: {
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top
+            }
+        }));
+    };
+
+    // IntersectionObserver scroll-triggering configuration for Mobile screens
+    useEffect(() => {
+        let observers: IntersectionObserver[] = [];
+
+        const setupMobileObserver = () => {
+            // Disconnect any existing active observers
+            observers.forEach(obs => obs.disconnect());
+            observers = [];
+
+            // Trigger scroll detection only on mobile screens (width < 1024px)
+            const isMobile = window.innerWidth < 1024;
+            if (!isMobile) return;
+
+            panelRefs.current.forEach((ref, index) => {
+                if (!ref) return;
+                const observer = new IntersectionObserver(
+                    ([entry]) => {
+                        // Expand the card when it enters focus in the screen center bounds
+                        if (entry.isIntersecting) {
+                            setActiveIndex(index);
+                        }
+                    },
+                    {
+                        root: null,
+                        rootMargin: '-35% 0px -35% 0px', // Triggers when the panel crosses the center vertical band
+                        threshold: 0.25 // The panel is 25% visible in the defined vertical focus zone
+                    }
+                );
+                observer.observe(ref);
+                observers.push(observer);
+            });
+        };
+
+        setupMobileObserver();
+
+        // Listen for screen resize events to dynamically toggle intersection observation
+        window.addEventListener('resize', setupMobileObserver);
+        return () => {
+            observers.forEach(obs => obs.disconnect());
+            window.removeEventListener('resize', setupMobileObserver);
+        };
+    }, [projects]);
 
     return (
         <section id="projects" className="py-24 relative overflow-hidden bg-zinc-950/60">
@@ -81,8 +141,10 @@ export default function ProjectsSection() {
                         return (
                             <motion.div
                                 key={project.id}
+                                ref={el => { panelRefs.current[index] = el; }}
                                 onClick={() => setActiveIndex(index)}
                                 onMouseEnter={() => setActiveIndex(index)}
+                                onMouseMove={(e) => handleMouseMove(e, project.id)}
                                 animate={{ 
                                     flex: isActive ? 4.5 : 1,
                                     backgroundColor: isActive ? 'rgba(30, 41, 59, 0.35)' : 'rgba(15, 23, 42, 0.2)'
@@ -98,6 +160,16 @@ export default function ProjectsSection() {
                                 {/* Subtle backing theme gradient */}
                                 <div className={`absolute inset-0 bg-gradient-to-br ${theme.bgGradient} opacity-50 pointer-events-none -z-10`} />
 
+                                {/* Desktop spotlight cursor tracking glow */}
+                                <div 
+                                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-0"
+                                    style={{
+                                        background: mousePositions[project.id] 
+                                            ? `radial-gradient(350px circle at ${mousePositions[project.id].x}px ${mousePositions[project.id].y}px, ${theme.glowColor}, transparent 80%)`
+                                            : 'none'
+                                    }}
+                                />
+
                                 <AnimatePresence mode="wait">
                                     {isActive ? (
                                         /* Expanded View */
@@ -107,7 +179,7 @@ export default function ProjectsSection() {
                                             animate={{ opacity: 1 }}
                                             exit={{ opacity: 0 }}
                                             transition={{ duration: 0.3 }}
-                                            className="w-full h-full flex flex-col lg:flex-row items-stretch p-6 sm:p-8 md:p-10 gap-6 lg:gap-8"
+                                            className="relative z-10 w-full h-full flex flex-col lg:flex-row items-stretch p-6 sm:p-8 md:p-10 gap-6 lg:gap-8"
                                         >
                                             {/* Left details pane */}
                                             <div className="w-full lg:w-1/2 flex flex-col justify-between h-full">
@@ -123,7 +195,7 @@ export default function ProjectsSection() {
                                                     </h3>
 
                                                     {/* Description */}
-                                                    <p className="text-gray-300 leading-relaxed text-sm sm:text-base mb-6">
+                                                    <p className="text-gray-300 leading-relaxed text-sm sm:text-base mb-6 font-light">
                                                         {project.description}
                                                     </p>
                                                 </div>
@@ -146,7 +218,7 @@ export default function ProjectsSection() {
                                                         href={project.link}
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white text-slate-950 hover:bg-gray-100 font-bold text-sm transition-transform hover:scale-105 active:scale-95 shadow-md"
+                                                        className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white text-slate-955 hover:bg-gray-100 font-bold text-sm transition-transform hover:scale-105 active:scale-95 shadow-md text-slate-950"
                                                     >
                                                         <span>Visit Website</span>
                                                         <FaExternalLinkAlt size={12} />
@@ -203,7 +275,7 @@ export default function ProjectsSection() {
                                             animate={{ opacity: 1 }}
                                             exit={{ opacity: 0 }}
                                             transition={{ duration: 0.3 }}
-                                            className="w-full h-full flex lg:flex-col justify-between items-center p-4 lg:py-8 lg:px-4"
+                                            className="relative z-10 w-full h-full flex lg:flex-col justify-between items-center p-4 lg:py-8 lg:px-4"
                                         >
                                             {/* Big Number Label */}
                                             <span className="text-2xl lg:text-3xl font-black font-mono text-white/10 group-hover:text-white/20 transition-colors">
