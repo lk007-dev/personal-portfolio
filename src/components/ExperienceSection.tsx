@@ -14,6 +14,15 @@ const experiences = [
         featured: true
     },
     {
+        id: 3,
+        role: 'Freelance Developer',
+        company: 'Self-Employed',
+        period: '2023 - Present',
+        description: 'Delivering side projects and custom web solutions for clients. Showcasing expertise in Next.js, React, and modern UI/UX design.',
+        type: 'work',
+        featured: true
+    },
+    {
         id: 2,
         role: 'Software Developer Intern',
         company: 'DRDO',
@@ -21,14 +30,6 @@ const experiences = [
         description: 'Completed a 6-month internship developing software solutions for defense applications. Gained hands-on experience in secure and scalable system design.',
         type: 'work',
         featured: true
-    },
-    {
-        id: 3,
-        role: 'Freelance Developer',
-        company: 'Self-Employed',
-        period: '2023 - Present',
-        description: 'Delivering side projects and custom web solutions for clients. Showcasing expertise in Next.js, React, and modern UI/UX design.',
-        type: 'work'
     },
     {
         id: 4,

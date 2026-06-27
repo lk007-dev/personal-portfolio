@@ -2,10 +2,8 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaBars, FaTimes, FaSun, FaMoon, FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaBars, FaTimes, FaGithub, FaLinkedin } from 'react-icons/fa';
 import Link from 'next/link';
-import { useAppDispatch, useAppSelector } from '../lib/hooks';
-import { toggleTheme } from '../features/theme/themeSlice';
 
 const navLinks = [
     { name: 'Home', href: '/' },
@@ -18,38 +16,74 @@ const navLinks = [
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
-    const dispatch = useAppDispatch();
-    const theme = useAppSelector((state) => state.theme.mode);
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
     const toggleMenu = () => setIsOpen(!isOpen);
 
-    // Mobile menu uses pure CSS transitions for maximum performance on all devices
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        show: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.08,
+            },
+        },
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 15 },
+        show: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                type: 'spring' as const,
+                stiffness: 260,
+                damping: 22,
+            },
+        },
+    };
 
     return (
-        <nav className="fixed w-full z-50 top-0 start-0 glass border-b border-white/10">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex items-center justify-between h-16">
+        <header className="fixed top-0 left-0 right-0 z-50 flex justify-center pointer-events-none p-4 sm:p-5">
+            <motion.nav 
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
+                className="w-full max-w-5xl rounded-full glass border border-white/5 shadow-[0_8px_32px_0_rgba(15,23,42,0.5)] pointer-events-auto px-4 sm:px-6 py-2 sm:py-3 transition-all duration-300"
+            >
+                <div className="flex items-center justify-between">
                     {/* Logo */}
-                    <Link href="/" className="flex-shrink-0 flex items-center gap-2">
-                        <div className="w-10 h-10 relative">
-                            {/* Using img tag directly for SVG or Next Image if configured. 
-                                 Since it's in public, /logo.svg works. */}
+                    <Link href="/" className="flex-shrink-0 flex items-center gap-2 group">
+                        <motion.div 
+                            whileHover={{ scale: 1.05, rotate: 5 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="w-9 h-9 relative filter drop-shadow-[0_0_8px_rgba(56,189,248,0.3)]"
+                        >
                             <img src="/logo.svg" alt="Lalit Logo" className="w-full h-full object-contain" />
-                        </div>
-                        <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent cursor-pointer hidden sm:block">
+                        </motion.div>
+                        <span className="text-lg font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent cursor-pointer hidden sm:block tracking-wide group-hover:brightness-110 transition-all duration-300">
                             Lalit
                         </span>
                     </Link>
 
                     {/* Desktop Menu */}
                     <div className="hidden md:block">
-                        <div className="ml-10 flex items-baseline space-x-8">
-                            {navLinks.map((link) => (
+                        <div className="flex items-center space-x-1 bg-white/5 px-2 py-1 rounded-full border border-white/5">
+                            {navLinks.map((link, index) => (
                                 <Link
                                     key={link.name}
                                     href={link.href}
-                                    className="text-gray-300 hover:text-white hover:bg-white/10 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                                    onMouseEnter={() => setHoveredIndex(index)}
+                                    onMouseLeave={() => setHoveredIndex(null)}
+                                    className="relative text-gray-300 hover:text-white px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase transition-colors duration-300 z-10"
                                 >
+                                    {hoveredIndex === index && (
+                                        <motion.span
+                                            layoutId="navbar-hover-pill"
+                                            className="absolute inset-0 bg-white/10 rounded-full -z-10"
+                                            transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                                        />
+                                    )}
                                     {link.name}
                                 </Link>
                             ))}
@@ -57,80 +91,101 @@ export default function Navbar() {
                     </div>
 
                     {/* Icons & Mobile Toggle */}
-                    <div className="flex items-center gap-4">
-                        {/* Theme Toggle */}
-                        {/* 
-            <button
-              onClick={() => dispatch(toggleTheme())}
-              className="p-2 rounded-full text-gray-300 hover:text-white transition-colors"
-              aria-label="Toggle Theme"
-            >
-              {theme === 'light' ? <FaMoon size={20} /> : <FaSun size={20} />}
-            </button>
-            */}
-
-                        {/* Socials (Optional in Nav) */}
-                        <a href="https://github.com/lk007-dev/" target="_blank" rel="noreferrer" className="hidden md:block text-gray-300 hover:text-white transition-colors">
-                            <FaGithub size={20} />
-                        </a>
+                    <div className="flex items-center gap-3">
+                        {/* Github Link */}
+                        <motion.a 
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.9 }}
+                            href="https://github.com/lk007-dev/" 
+                            target="_blank" 
+                            rel="noreferrer" 
+                            className="hidden md:flex w-9 h-9 items-center justify-center rounded-full bg-white/5 hover:bg-white/10 border border-white/5 text-gray-300 hover:text-white transition-colors cursor-pointer"
+                        >
+                            <FaGithub size={18} />
+                        </motion.a>
 
                         {/* Mobile menu button */}
-                        <div className="-mr-2 flex md:hidden">
-                            <button
+                        <div className="flex md:hidden">
+                            <motion.button
+                                whileTap={{ scale: 0.9 }}
                                 onClick={toggleMenu}
                                 type="button"
-                                className="bg-transparent inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-white/10 focus:outline-none"
+                                className="w-9 h-9 bg-white/5 border border-white/5 inline-flex items-center justify-center rounded-full text-gray-400 hover:text-white focus:outline-none"
                                 aria-controls="mobile-menu"
-                                aria-expanded="false"
+                                aria-expanded={false}
                             >
                                 <span className="sr-only">Open main menu</span>
-                                {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-                            </button>
+                                {isOpen ? <FaTimes size={18} /> : <FaBars size={18} />}
+                            </motion.button>
                         </div>
                     </div>
                 </div>
-            </div>
+            </motion.nav>
 
-            {/* Mobile Menu Overlay - Pure CSS for maximum performance */}
-            <div
-                className={`md:hidden fixed inset-0 z-40 bg-zinc-950 flex items-center justify-center transition-transform duration-300 ease-out will-change-transform ${
-                    isOpen ? 'translate-x-0' : 'translate-x-full'
-                }`}
-            >
-                {/* Close Button Layout for Mobile */}
-                <div className="absolute top-5 right-5 z-50">
-                    <button
-                        onClick={() => setIsOpen(false)}
-                        className="p-2 text-gray-400 hover:text-white transition-colors"
+            {/* Mobile Menu Overlay - AnimatePresence */}
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.25 }}
+                        className="md:hidden fixed inset-0 z-40 bg-zinc-950/95 backdrop-blur-xl flex items-center justify-center pointer-events-auto"
                     >
-                        <FaTimes size={32} />
-                    </button>
-                </div>
-
-                <div className="relative z-10 flex flex-col items-center gap-8">
-                    {navLinks.map((link) => (
-                        <div key={link.name}>
-                            <Link
-                                href={link.href}
+                        {/* Close Button Layout for Mobile */}
+                        <div className="absolute top-5 right-5 z-50">
+                            <motion.button
+                                whileTap={{ scale: 0.9 }}
                                 onClick={() => setIsOpen(false)}
-                                className="text-2xl font-bold text-gray-300 hover:text-white hover:scale-110 transition-transform block p-2"
+                                className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-gray-400 hover:text-white transition-colors"
                             >
-                                {link.name}
-                            </Link>
+                                <FaTimes size={22} />
+                            </motion.button>
                         </div>
-                    ))}
 
-                    {/* Mobile Socials */}
-                    <div className="flex gap-8 mt-8">
-                        <a href="https://github.com/lk007-dev/" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                            <FaGithub size={32} />
-                        </a>
-                        <a href="https://www.linkedin.com/in/lalit-bijarnia" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                            <FaLinkedin size={32} />
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </nav>
+                        <motion.div 
+                            variants={containerVariants}
+                            initial="hidden"
+                            animate="show"
+                            className="relative z-10 flex flex-col items-center gap-6"
+                        >
+                            {navLinks.map((link) => (
+                                <motion.div key={link.name} variants={itemVariants}>
+                                    <Link
+                                        href={link.href}
+                                        onClick={() => setIsOpen(false)}
+                                        className="text-2xl font-bold tracking-wide text-gray-300 hover:text-white transition-colors block p-2"
+                                    >
+                                        {link.name}
+                                    </Link>
+                                </motion.div>
+                            ))}
+
+                            {/* Mobile Socials */}
+                            <motion.div variants={itemVariants} className="flex gap-6 mt-6">
+                                <motion.a 
+                                    whileHover={{ scale: 1.1 }}
+                                    href="https://github.com/lk007-dev/" 
+                                    target="_blank" 
+                                    rel="noreferrer" 
+                                    className="w-12 h-12 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-gray-400 hover:text-white transition-colors"
+                                >
+                                    <FaGithub size={24} />
+                                </motion.a>
+                                <motion.a 
+                                    whileHover={{ scale: 1.1 }}
+                                    href="https://www.linkedin.com/in/lalit-bijarnia" 
+                                    target="_blank" 
+                                    rel="noreferrer" 
+                                    className="w-12 h-12 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-gray-400 hover:text-white transition-colors"
+                                >
+                                    <FaLinkedin size={24} />
+                                </motion.a>
+                            </motion.div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </header>
     );
 }
