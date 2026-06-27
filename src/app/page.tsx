@@ -15,9 +15,9 @@ export default function Home() {
       <main className="min-h-screen bg-transparent relative z-0">
       <Hero />
       <AboutSection />
+      <ProjectsSection />
       <ExperienceSection />
       <SkillsSection />
-      <ProjectsSection />
       <ContactSection />
       <Footer />
       </main>

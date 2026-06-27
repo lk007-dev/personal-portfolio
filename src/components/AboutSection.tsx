@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FaDownload, FaCoffee, FaCode, FaRocket } from 'react-icons/fa';
+import { FaExternalLinkAlt, FaCoffee, FaCode, FaRocket } from 'react-icons/fa';
 
 const stats = [
     { label: 'Years Experience', value: '1.5+', icon: FaCode },
@@ -36,11 +36,12 @@ export default function AboutSection() {
                         </p>
 
                         <a
-                            href="/Lalit_Kumar_Resume.pdf"
-                            download="Lalit_Kumar_Resume.pdf"
+                            href="/resume.html"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-white text-slate-900 font-semibold hover:bg-gray-200 transition-colors shadow-lg"
                         >
-                            <FaDownload /> Download Resume
+                            <FaExternalLinkAlt /> View Resume
                         </a>
                     </motion.div>
 
